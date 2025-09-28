@@ -70,6 +70,8 @@ Download the test data from the [Test data](https://drive.google.com/drive/folde
 
 Execute the `test_tb3.sh` script in reid files, which will compute the mAP and CMC values provided in Table 3/9/10 of our paper. 
 
+Specifically, the results can also be found in result.txt file in the [pretrained identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing).
+
 # More information on remaining folders and scripts:
 ### Directories:
 - `configs/` contains the configuration .yaml files
