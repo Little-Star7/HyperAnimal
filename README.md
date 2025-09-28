@@ -64,7 +64,7 @@ With the code provided under `reid/`, the training and testing of six identifica
     ./test.sh
 
 ***Important!!! Testing the values in Table 3/9/10***
-Download the well-trained six identification models from the [identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing).
+Download the well-trained six identification models from the [identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing), and place them in ./reid/model/rp or ./reid/model/gp or ./reid/model/atrw.
 
 Download the test data from the [Test data](https://drive.google.com/drive/folders/1KA-W50bNshT8s9gOy0SjNR2zNytKgPhA?usp=sharing)
 
