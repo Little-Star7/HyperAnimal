@@ -76,7 +76,7 @@ Execute the `test_tb3.sh` script in reid files, which will compute the mAP and C
 - `data/` contains the training images and training embeddings
 - `diffusion/` contains the DDPM code
 - `models/` contains the PyTorch modules and model structures
-- - `outputs/` contains pre-trained models
+- `outputs/` contains pre-trained models
 - `samples/` will contain the generated samples, their extracted features and the contexts used for sampling
 - `utils/` contains utility modules, models and scripts
 - `reid/` contains code that was used to train animal identifictaion models
