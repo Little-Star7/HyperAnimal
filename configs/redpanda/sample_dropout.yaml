@@ -1,0 +1,30 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+checkpoint:
+  path: "outputs/rp_dropout"
+
+  global_step: null
+  use_non_ema: false
+
+sampling:
+  seed: 42
+
+  contexts_file: "data/contexts/syn_2000.npy"
+
+  batch_size: 10
+  n_contexts: 2000
+
+  n_samples_per_context: 10
+
+  id_perturbation: 0.0
+  angle_spread_factor: 1
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

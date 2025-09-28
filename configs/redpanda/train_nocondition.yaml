@@ -1,0 +1,60 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - diffusion: ddpm                    # config for the diffusion (beta schedule, T, ...)
+  - model: unet_non_cond                # config for the epsilon prediction model
+  - dataset: redpanda_resnet              # config for the dataset (data path, number of classes, image channels, ...)
+  - experiment: null                   # additional temporary experiment configurations
+  - paths: path             # system-specific paths
+
+latent_diffusion: true
+vqvae: true
+
+constants:                         # some constants (can be overriden by defaults, e.g. the image_channels by the dataset)
+  seed: 0
+  image_size: -1
+  input_channels: 4
+  n_classes: 0
+
+training:
+  precision: 16
+  batch_size: 16
+  num_workers: 1
+  pin_memory: true
+  steps: 20_000
+  steps_between_sampling: 5000
+  steps_between_eval: 5000
+  steps_between_logging: 100
+  steps_of_checkpoints:
+    - 20_000
+  context_dropout: 0.0
+  context_permutation: 0.0
+  id_perturbation: 0.0
+  angle_spread_factor: 1
+  ema:
+    _partial_: true
+    _target_: utils.ema.EMAModel
+    inv_gamma: 1.0
+    power: 0.75
+    min_value: 0.0
+    max_value: 0.9999
+  optimizer:
+    _partial_: true
+    _target_: torch.optim.Adam
+    lr: 1e-4
+  lr_scheduler:
+    _partial_: true
+    _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+    T_0: 10_000
+    T_mult: 2
+  checkpoint:
+    restore: false
+    path: "/home/brl4090/yy/newAID/outputs/redpanda/rp_syn"
+
+hydra:
+  job:
+    chdir: true
+  run:
+#    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    dir: outputs/rp_nocondition
