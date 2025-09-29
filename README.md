@@ -6,19 +6,19 @@ This repository contains source code to reproduce the following paper: HyperAnim
 
 # Datasets and pretrained models
 Download links for the pretrained HyperAnimal diffusion model weights:
-- [Pretrained HyperAnimal for Red panda] (https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
-- [Pretrained HyperAnimal for Giant panda] (https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
-- [Pretrained HyperAnimal for Amur tiger] (https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
+- [Pretrained HyperAnimal for Red panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
+- [Pretrained HyperAnimal for Giant panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
+- [Pretrained HyperAnimal for Amur tiger](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
 
 Download links for the generated synthetic 2K identities x 10 images datasets from the paper:
-- [Synthetic dataset for Red panda] (https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
-- [Synthetic datasets for Giant panda] (https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
-- [Synthetic datasets for Amur tiger] (https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
+- [Synthetic dataset for Red panda](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
+- [Synthetic datasets for Giant panda](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
+- [Synthetic datasets for Amur tiger](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
 
 Download links for the pretrained individual animal identification models using synthetic HyperAnimal generated data:
-- [ResNet50/DenseNet121/HRNet32/EfficientNet/ConvNext/SwinV2 for Red panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
-- [ResNet50/DenseNet121/HRNet32/EfficientNet/ConvNext/SwinV2 for Giant panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
-- [ResNet50/DenseNet121/HRNet32/EfficientNet/ConvNext/SwinV2 for Amur tiger](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
+- [Pretrained Identification Models for Red panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
+- [Pretrained Identification Models for Giant panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
+- [Pretrained Identification Models for Amur tiger](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
 
 
 # How to use the code? 
