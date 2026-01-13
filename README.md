@@ -4,23 +4,78 @@ This repository contains source code to reproduce the following paper: HyperAnim
 # Framework
 ![4-2-paper](https://github.com/user-attachments/assets/df0b01fb-0c1f-4904-aaa6-80f29975a2ef)
 
-# Datasets and pretrained models
 📥 Datasets and Pretrained Models
-Download links for the pretrained HyperAnimal diffusion model weights:
+Pretrained HyperAnimal Diffusion Models
+Download the pretrained HyperAnimal diffusion model weights for different species:
 - [Pretrained HyperAnimal for Red panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
 - [Pretrained HyperAnimal for Giant panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
 - [Pretrained HyperAnimal for Amur tiger](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
 
-Download links for the generated synthetic 2K identities x 10 images datasets from the paper:
+Synthetic Datasets
+Download the generated synthetic datasets (2K identities × 10 images) from the paper:
 - [Synthetic dataset for Red panda](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
 - [Synthetic datasets for Giant panda](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
 - [Synthetic datasets for Amur tiger](https://drive.google.com/drive/folders/1lqPkZpIvAmY_RpX-yRKx1YN2z13jqhL2?usp=sharing)
 
-Download links for the pretrained individual animal identification models using synthetic HyperAnimal generated data:
+Pretrained Identification Models
+Download the pretrained individual animal identification models trained on synthetic HyperAnimal data:
 - [Pretrained Identification Models for Red panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
 - [Pretrained Identification Models for Giant panda](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
 - [Pretrained Identification Models for Amur tiger](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing)
 
+🚀 Quick Start
+Environment Setup
+1. Clone the repository:
+
+git clone <repository-url>
+cd HyperAnimal
+
+2. Create and activate the conda environment:
+
+conda env create -n hyperanimal -f environment.yml
+conda activate hyperanimal
+
+Data Preparation (Red Panda Example)
+Place unlabeled real red panda images in `data/redpanda/`. The pre-extracted training embeddings are provided in `data/redpanda_embeddings`.
+
+Required Pretrained Models:
+1. Identity Embeddings Extractor:
+- Downloaded from [identity embeddings](https://drive.google.com/drive/folders/1_MQI72nr_lVCJa5LuSHyo8iWRf58dYJy?usp=sharing)
+- Save to `models/identification/weights/rpd43.pth` 
+
+2. Autoencoder Weights:
+- Download pre-trained encoder/decoder weights from [Encoder and decoder model weights](https://drive.google.com/drive/folders/1_2hTh0Bi0NekxtHaSfY9eFtfavclfgwQ?usp=sharing)
+- Save to `models/autoencoder/vq_f8_encoder.pt` and `models/autoencoder/vq_f8_decoder.pt`
+Note: The pre-trained autoencoder weights that originally come from the `fhq256` LDM from [Rombach et al.](https://github.com/CompVis/latent-diffusion/blob/main/models/ldm/ffhq256/config.yaml). Their VQModelInterface submodule has been manually extracted and split into its encoder and decoder models, since the encoder is only used during training and the decoder is only needed for sampling.
+
+📊 Usage Guide
+1. Training the HyperAnimal Model
+Configure the dataset option to redpanda_FDIEin the configuration files. Ensure paths in configs/dataset/redpanda.yamlcorrectly point to your training images and embeddings.
+Start training:
+
+python main.py
+
+Trained models will be saved in `outputs/redpanda/`.
+
+2. Sampling with a Trained HyperAnimal Model
+Download pretrained HyperAnimal models​ (including the ".hydra" folder) and place them in `outputs/redpanda/`.
+Generate synthetic identity contexts:
+
+python create_sample_identity_contexts.py
+
+3. Configure sampling parameters​ in `configs/sample_rp.yaml`:
+- Path to trained model
+- Path to contexts file
+- Number of identities
+- Images per identity
+
+4. Generate samples:
+
+python sample.py
+
+5. Split identity blocks​ into individual images:
+
+python split_identity_blocks.py
 
 # How to use the code? 
 It includes the main scripts used for training and evaluating the HyperAnimal models. Below we take the Red Panda dataset as an example.
@@ -59,46 +114,61 @@ For reproducibility and consistency, the synthetic contexts are NOT generated on
 Those samples will be saved under `samples/` as identity blocks, e.g. a 4x4 grid block of 512x512 images. These blocks can then be splitted using e.g. then `split_identity_blocks.py` script.    
     
     python split_identity_blocks.py
-    
+
+Generated samples are saved in samples/as 4×4 grid blocks (512×512 each).
+
 ---
 # Training individual animal identification models
 With the code provided under `reid/`, the training and testing of six identification models should be started via:
 
+    # Prepare data splits
     python prepare_gallery_query.py
     python prepare_train_val.py
+    
+    # Train models
     ./train.sh
+    
+    # Evaluate models
     ./test.sh
 
 ***Important!!! Testing the values in Table 3/9/10***
-Download the well-trained six identification models from the [identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing), and place them in ./reid/model/rp or ./reid/model/gp or ./reid/model/atrw.
+1. Download the pretrained six identification models​ from [identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing), and place them in
+   - ./reid/model/rp
+   - ./reid/model/gp
+   - ./reid/model/atrw.
 
-Download the test data from the [Test data](https://drive.google.com/drive/folders/1KA-W50bNshT8s9gOy0SjNR2zNytKgPhA?usp=sharing), and place them in ./reid/test_data/redpanda-test or ./reid/test_data/iPanda-test or ./reid/test_data/atrw-test.
+2. Download the test data from [Test data](https://drive.google.com/drive/folders/1KA-W50bNshT8s9gOy0SjNR2zNytKgPhA?usp=sharing), and place them in
+   - ./reid/test_data/redpanda-test
+   - ./reid/test_data/iPanda-test
+   - ./reid/test_data/atrw-test.
 
-Execute the `test_tb3.sh` script in reid files, which will compute the mAP and CMC values provided in Table 3/9/10 of our paper. 
+3. Execute the `test_tb3.sh` script in reid files 
 
     cd HyperAnimal/reid
     bash test_tb3.sh
 
-Specifically, the results can also be found in result.txt file in the [pretrained identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing).
+Results (mAP and CMC values) will be saved to result.txt. These values correspond to Table 3, 9, and 10 in the paper. Specifically, the results can also be found in result.txt file from [pretrained identification models](https://drive.google.com/drive/folders/11Qh4jIZYmq4gKqpWRgvTwUjqgL8E6o-U?usp=sharing).
 
-# More information on remaining folders and scripts:
-### Directories:
-- `configs/` contains the configuration .yaml files
-- `data/` contains the training images and training embeddings
-- `diffusion/` contains the DDPM code
-- `models/` contains the PyTorch modules and model structures
-- `outputs/` contains pre-trained models
-- `samples/` will contain the generated samples, their extracted features and the contexts used for sampling
-- `utils/` contains utility modules, models and scripts
-- `reid/` contains code that was used to train animal identifictaion models
-
-### Main scripts:
-- `main.py` contains the training script
-- `sample.py` contains the sampling script
-- `create_sample_identity_contexts.py` contains code for identity-context generation
-- `split_identity_blocks.py` samples are saved as concatenated blocks per identity (can easily be modified),
-              and this script can be used to split them to create identity-class folders for identification training
-- `extract_identity_embeddings.py` extracts identity embeddings from the pre-trained FDIE extractor or ResNet50 identification model
-
+📁 Repository Structure
+HyperAnimal/
+├── configs/                 # Configuration YAML files
+├── data/                    # Training images and embeddings 
+│   ├── embeddings/          # Identity embeddings for training
+|   |── contexts/            # Synthetic identity embeddings for sampling 
+│   └── redpanda/            # Redpanda dataset
+├── models/                  # PyTorch model architectures
+│   ├── autoencoder/         # Autoencoder models
+|   |── diffusion/           # DDPM implementation
+│   └── identification/      # Identification model weights
+├── outputs/                 # Trained model checkpoints
+├── samples/                 # Generated samples and features
+├── utils/                   # Utility modules and scripts
+├── reid/                    # Animal identification training code
+├── main.py                  # Main training script
+├── sample.py                # Sampling script
+├── create_sample_identity_contexts.py  # Context generation
+├── split_identity_blocks.py            # Sample processing
+├── extract_identity_embeddings.py      # Embedding extraction
+└── environment.yml          # Conda environment specification
 
 
