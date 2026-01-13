@@ -154,11 +154,11 @@ HyperAnimal/
 ├── configs/                 # Configuration YAML files
 ├── data/                    # Training images and embeddings 
 │   ├── embeddings/          # Identity embeddings for training
-|   |── contexts/            # Synthetic identity embeddings for sampling 
+│   ├── contexts/            # Synthetic identity embeddings for sampling 
 │   └── redpanda/            # Redpanda dataset
 ├── models/                  # PyTorch model architectures
 │   ├── autoencoder/         # Autoencoder models
-|   |── diffusion/           # DDPM implementation
+│   ├── diffusion/           # DDPM implementation
 │   └── identification/      # Identification model weights
 ├── outputs/                 # Trained model checkpoints
 ├── samples/                 # Generated samples and features
