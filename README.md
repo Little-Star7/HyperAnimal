@@ -5,6 +5,7 @@ This repository contains source code to reproduce the following paper: HyperAnim
 ![4-2-paper](https://github.com/user-attachments/assets/df0b01fb-0c1f-4904-aaa6-80f29975a2ef)
 
 # Datasets and pretrained models
+📥 Datasets and Pretrained Models
 Download links for the pretrained HyperAnimal diffusion model weights:
 - [Pretrained HyperAnimal for Red panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
 - [Pretrained HyperAnimal for Giant panda](https://drive.google.com/drive/folders/199PT_9hB8BZe-_klc1F_0N2sGqk3SOsy?usp=sharing)
@@ -25,6 +26,11 @@ Download links for the pretrained individual animal identification models using 
 It includes the main scripts used for training and evaluating the HyperAnimal models. Below we take the Red Panda dataset as an example.
 
 # Setup 
+Create the conda environment using the provided environment.yml file:
+
+cd HyperAnimal
+conda env create -n hyperanimal -f environment.yml
+
 Put the unlabelled real redpanda images under `data/redpanda/`. The training embeddings used as identity contexts during training are provided under `data/redpanda_embeddings` and can be extracted using the `extract_identity_embeddings.py` script. 
 
 For that, the pre-trained identity extractor weights have to be downloaded from the [identity embeddings](https://drive.google.com/drive/folders/1_MQI72nr_lVCJa5LuSHyo8iWRf58dYJy?usp=sharing) and placed under `models/identification/weights/rpd43.pth`. 
