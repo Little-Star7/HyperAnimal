@@ -1,2 +1,2 @@
-root: "/..."
-data_root: "/data"
+root: "../../"
+data_root: "../../data"
