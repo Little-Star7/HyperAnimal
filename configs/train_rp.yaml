@@ -50,10 +50,11 @@ training:
     T_mult: 2
   checkpoint:
     restore: false
-    path: "/outputs/redpanda"
+    path: "/outputs/rp_f1"
 
 hydra:
   job:
     chdir: true
   run:
+
     dir: outputs/rp_f1
