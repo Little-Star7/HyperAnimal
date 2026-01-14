@@ -6,7 +6,7 @@ defaults:
   - override hydra/job_logging: disabled
 
 checkpoint:
-  path: "outputs/rp"
+  path: "outputs/rp_f1"
 
   global_step: null
   use_non_ema: false
